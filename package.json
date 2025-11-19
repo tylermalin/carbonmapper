@@ -1,0 +1,24 @@
+{
+  "name": "malama-carbon-mapping",
+  "version": "0.1.0",
+  "description": "Malama Carbon Mapping - Estimate stored carbon and carbon credit potential",
+  "private": true,
+  "scripts": {
+    "install:backend": "cd backend && npm install",
+    "install:frontend": "cd frontend && npm install",
+    "install:all": "npm run install:backend && npm run install:frontend",
+    "dev:backend": "cd backend && npm run dev",
+    "start:backend": "cd backend && npm start",
+    "serve:frontend": "cd frontend && npx serve . -p 3000"
+  },
+  "keywords": [
+    "carbon",
+    "carbon-credits",
+    "climate",
+    "earth-engine",
+    "mapping"
+  ],
+  "author": "Malama Labs",
+  "license": "UNLICENSED"
+}
+

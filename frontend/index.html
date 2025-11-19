@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Malama Carbon Mapping - Estimate stored carbon and carbon credit potential from anywhere on Earth" />
+    <title>Malama Carbon Mapping - Beta</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      crossorigin=""
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.css"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="header-content">
+        <div>
+          <h1>Malama Carbon Mapping <span class="beta-badge">BETA</span></h1>
+          <p>Draw a polygon anywhere on Earth to estimate stored carbon and carbon credit potential.</p>
+        </div>
+        <div class="beta-notice">
+          <p>🧪 <strong>Beta Testing</strong> - We're actively improving this tool. Interested in seeing more?</p>
+          <a href="mailto:info@malamalabs.com" class="contact-link">Get in touch →</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div id="map"></div>
+      <div id="sidebar">
+        <section id="results" class="card">
+          <h2>Carbon Storage</h2>
+          <div id="status">Draw a polygon to begin.</div>
+          <div class="metric">
+            <span>Aboveground:</span>
+            <strong id="agb">—</strong>
+          </div>
+          <div class="metric">
+            <span>Belowground:</span>
+            <strong id="bgb">—</strong>
+          </div>
+          <div class="metric total">
+            <span>Total Carbon:</span>
+            <strong id="total">—</strong>
+          </div>
+        </section>
+
+        <section id="credits" class="card" style="display: none;">
+          <h2>Carbon Credits</h2>
+          <div class="info-box">
+            <div class="info-label">CO₂ Equivalent:</div>
+            <div class="info-value" id="co2-equiv">—</div>
+            <div class="info-note">1 tonne C = 3.67 tonnes CO₂e</div>
+          </div>
+          <div class="info-box">
+            <div class="info-label">Potential Credits:</div>
+            <div class="info-value" id="credits-count">—</div>
+            <div class="info-note">1 credit = 1 tonne CO₂e</div>
+          </div>
+        </section>
+
+        <section id="market-value" class="card" style="display: none;">
+          <h2>Market Value Estimates</h2>
+          <div class="market-tabs">
+            <button class="tab-btn active" data-market="voluntary">Voluntary</button>
+            <button class="tab-btn" data-market="high_quality">High Quality</button>
+            <button class="tab-btn" data-market="compliance">Compliance</button>
+          </div>
+          <div id="market-content" class="market-content">
+            <div class="value-range">
+              <div class="range-item">
+                <span class="range-label">Low:</span>
+                <span class="range-value" id="value-low">—</span>
+              </div>
+              <div class="range-item">
+                <span class="range-label">Average:</span>
+                <span class="range-value highlight" id="value-avg">—</span>
+              </div>
+              <div class="range-item">
+                <span class="range-label">High:</span>
+                <span class="range-value" id="value-high">—</span>
+              </div>
+            </div>
+            <div class="market-note" id="market-note"></div>
+          </div>
+        </section>
+
+        <section id="suggestions" class="card" style="display: none;">
+          <h2>Suggestions & Next Steps</h2>
+          <div id="suggestions-list"></div>
+        </section>
+
+        <section id="methodologies" class="card" style="display: none;">
+          <h2>Certification Methodologies</h2>
+          <div id="methodologies-list"></div>
+        </section>
+
+        <section class="card footer-card">
+          <div class="footer-content">
+            <p><strong>Malama Carbon Mapping</strong> - Beta Testing</p>
+            <p>Interested in seeing more? <a href="mailto:info@malamalabs.com" class="contact-link-inline">Get in touch</a></p>
+            <p class="footer-email"><a href="mailto:info@malamalabs.com">info@malamalabs.com</a></p>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      crossorigin=""
+    ></script>
+    <script src="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
