@@ -197,7 +197,19 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
 });
 
 async function sendPolygon(geometry) {
-  const res = await fetch(`${BACKEND_URL}/api/calculate-carbon`, {
+  // Construct API URL correctly for both localhost and production
+  // On localhost: BACKEND_URL = 'http://localhost:4000', need '/api/calculate-carbon'
+  // On Vercel: BACKEND_URL = '/api', need '/calculate-carbon' (already has /api prefix)
+  let apiUrl;
+  if (BACKEND_URL.includes('localhost') || BACKEND_URL.startsWith('http')) {
+    // Local development - full URL
+    apiUrl = `${BACKEND_URL}/api/calculate-carbon`;
+  } else {
+    // Production (Vercel) - relative path, BACKEND_URL already includes /api
+    apiUrl = `${BACKEND_URL}/calculate-carbon`;
+  }
+  
+  const res = await fetch(apiUrl, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ geometry }),
