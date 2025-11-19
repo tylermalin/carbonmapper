@@ -34,6 +34,10 @@ export default async function handler(req, res) {
   }
 
   try {
+    // Log environment check
+    console.log('GEE_KEY_FILE:', process.env.GEE_KEY_FILE);
+    console.log('GEE_SERVICE_ACCOUNT_KEY exists:', !!process.env.GEE_SERVICE_ACCOUNT_KEY);
+    
     // Ensure GEE is initialized
     await ensureGEEInitialized();
     
@@ -55,10 +59,11 @@ export default async function handler(req, res) {
     });
   } catch (err) {
     console.error('calculate-carbon failed', err);
+    console.error('Error stack:', err.stack);
     res.status(500).json({ 
       error: 'calculation failed',
       message: err.message,
-      details: process.env.NODE_ENV === 'development' ? err.stack : undefined
+      details: err.stack
     });
   }
 }
